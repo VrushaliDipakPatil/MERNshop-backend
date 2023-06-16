@@ -23,6 +23,7 @@ mongoose
 
   app.use(express.json())
   app.use(cors());
+  app.send("/", "<h1> Backend is Live </h1>");
  app.use("/api/user", userRoute);
  app.use("/api/auth", authRoute);
  app.use("/api/products", productRoute);
