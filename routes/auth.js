@@ -6,6 +6,8 @@ const jwt = require("jsonwebtoken")
 //REGISTER
 router.post("/register", async (req, res) => {
   const newUser = new User({
+    name:req.body.name,
+    lastname:req.body.lastname,
     username: req.body.username,
     email: req.body.email,
     password: CryptoJS.AES.encrypt(
@@ -38,7 +40,7 @@ router.post("/login", async (req, res) => {
 
     Originalpassword !== req.body.password && res.status(401).json("Wrong cerdentials"); //if password not matched
 
-    const accessToken = jwt.sign( // to authenticate and authorize we use jwt i.e. if admin then giv authority of admin else client authorities
+    const accessToken = jwt.sign( // to authenticate and authorize we use jwt i.e. if admin then give authority of admin else client authorities
       {
         id: user._id,
         isAdmin: user.isAdmin,
